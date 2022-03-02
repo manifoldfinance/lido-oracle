@@ -1,7 +1,7 @@
 name: hadolint
 
 on:
-  push:
+  pull_request:
     branches:
     - master
     - feature/**
