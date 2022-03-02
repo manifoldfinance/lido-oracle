@@ -12,14 +12,20 @@ on:
     - '.github/workflows/hadolint.yml'
 
 jobs:
-  hadolint:
+  goss:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
     - name: goss
-        uses: e1himself/goss-installation-action@v1.0.3
+      uses: e1himself/goss-installation-action@v1.0.3
     - name: hadolint
       uses: docker://hadolint/hadolint:latest
+      id: goss
       with:
         args: 'hadolint --format tty Dockerfile'
+
+    - uses: hadolint/hadolint-action@v1.6.0
+      id: hadolint
+      with:
+        dockerfile: Dockerfile
